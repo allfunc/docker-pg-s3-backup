@@ -15,10 +15,11 @@ for i in "$@"; do
   C="$C \"${i//\"/\\\"}\""
 done
 
-cli='env docker run --rm -it'
+cli='env docker run --rm'
 cli+=" -v $DIR/../docker/entrypoint.sh:/entrypoint.sh"
 cli+=" -v $DIR/../tmp:/tmp/backup"
 cli+=" -e POSTGRES_HOST=host.docker.internal"
+cli+=" -e 'POSTGRES_DATABASE=postgres'"
 cli+=" --name ${folderName}-${pid} ${localImage} ${C}"
 echo $cli
 sh -c "$cli"

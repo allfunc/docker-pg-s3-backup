@@ -1,11 +1,10 @@
 #!/usr/bin/env sh
 
-echo "Creating backup of $POSTGRES_DATABASE database..."
-echo
-
 timestamp=$(date +"%Y-%m-%dT%H:%M:%S")
 
 for db in $POSTGRES_DATABASE; do
+  echo "Creating backup: [$db] database..."
+  echo
   local_file=$(dump-one-db $db $timestamp)
   echo $local_file
 done
