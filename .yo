@@ -1,0 +1,4 @@
+repositoryName=docker-pg-s3-backup
+repositoryOrgName=allfunc
+dockerImageName=pg-s3-backup
+dockerOrgName=allfunc

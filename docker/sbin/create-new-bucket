@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+CREATE_BUCKET=$1
+mymc
+mc admin info myminio
+echo '== Create Bucket ==';
+if ! mc ls myminio | grep -q "${CREATE_BUCKET}/"; then
+  mc mb myminio/${CREATE_BUCKET}
+else
+  echo "bucket already exists"
+fi
+echo '== Make Bucket to Public ==';
+mc anonymous set public myminio/${CREATE_BUCKET}
+exit 0;

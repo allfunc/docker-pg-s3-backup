@@ -1,0 +1,5 @@
+archive.tar
+.*.sw?
+/v*-
+.env
+tmp

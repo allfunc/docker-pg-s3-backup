@@ -1,0 +1,15 @@
+services:
+  pg:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - "./test-with-db/initdb/sql:/docker-entrypoint-initdb.d"
+    ports:
+      - "5432:5432"
+  adminer:
+    image: adminer
+    depends_on:
+      - pg
+    ports:
+      - "9180:8080"

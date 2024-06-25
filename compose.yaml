@@ -1,0 +1,39 @@
+services:
+  pg:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - "./test-with-db/initdb/sql:/docker-entrypoint-initdb.d"
+
+  adminer:
+    image: adminer
+    depends_on:
+      - pg
+    ports:
+      - "9180:8080"
+
+  s3:
+    image: minio/minio 
+    hostname: minio1
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    command: server --address 0.0.0.0:9200 --console-address 0.0.0.0:9100 /data
+    ports:
+      - "9100:9100"
+
+  backup:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    environment:
+      - POSTGRES_HOST=pg
+      - POSTGRES_DATABASE=postgres
+      - S3_S3V4=${S3_S3V4}
+      - S3_BUCKET=${S3_BUCKET}
+      - S3_REGION=${S3_REGION}
+      - S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
+      - S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
+    volumes:
+      - "./docker/sbin:/usr/local/sbin"
