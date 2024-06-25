@@ -10,8 +10,8 @@ remote_file_name=$2
 S3_URL=$(${DIR}/ver_S3_URL.sh)
 S3_REGION=$(${DIR}/ver_S3_REGION.sh)
 S3_BUCKET=$(${DIR}/ver_S3_BUCKET.sh)
-export AWS_ACCESS_KEY_ID=$(ver_S3_ACCESS_KEY_ID.sh)
-export AWS_SECRET_ACCESS_KEY=$(ver_S3_SECRET_ACCESS_KEY.sh)
+export AWS_ACCESS_KEY_ID=$(${DIR}/ver_S3_ACCESS_KEY_ID.sh)
+export AWS_SECRET_ACCESS_KEY=$(${DIR}/ver_S3_SECRET_ACCESS_KEY.sh)
 
 # https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html
 aws_args=""
