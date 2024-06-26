@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+input=$1
+
+for db in $POSTGRES_DATABASE; do
+  pg_restore -v \
+    -h $POSTGRES_HOST \
+    -p $POSTGRES_PORT \
+    -U $POSTGRES_USER \
+    $PGRESTORE_EXTRA_OPTS --clean --if-exists \
+    -d ${db} $input/backup_${db}.dump
+done
