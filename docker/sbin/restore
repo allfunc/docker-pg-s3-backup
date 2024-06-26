@@ -3,7 +3,7 @@
 input=$1
 
 for db in $POSTGRES_DATABASE; do
-  pg_restore -v -O -Fc \
+  PGPASSWORD=${POSTGRES_PASSWORD} pg_restore -v -O -Fc \
     -h $POSTGRES_HOST \
     -p $POSTGRES_PORT \
     -U $POSTGRES_USER \

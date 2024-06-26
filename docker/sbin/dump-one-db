@@ -7,7 +7,7 @@ tmp_backup_folder='/tmp/backup/backup_'$timestamp
 tmp_file=$tmp_backup_folder'/'$tmp_name'.dump'
 mkdir -p $tmp_backup_folder
 
-pg_dump --format=custom \
+PGPASSWORD=${POSTGRES_PASSWORD} pg_dump --format=custom \
   -h $POSTGRES_HOST \
   -p $POSTGRES_PORT \
   -U $POSTGRES_USER \
