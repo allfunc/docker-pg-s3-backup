@@ -3,6 +3,8 @@
 input=$1
 
 for db in $POSTGRES_DATABASE; do
+  echo "Restore backup: [$db] database..."
+  echo
   PGPASSWORD=${POSTGRES_PASSWORD} pg_restore -v --create -O -Fc \
     -h $POSTGRES_HOST \
     -p $POSTGRES_PORT \
