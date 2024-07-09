@@ -6,7 +6,7 @@
 
 BUILD_DEPS=""
 
-INSTALL="aws-cli postgresql-client minio-client"
+INSTALL="aws-cli postgresql-client minio-client postgresql16"
 
 UPGRADE=""
 
